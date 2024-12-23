@@ -78,6 +78,7 @@ const Body = () => {
           padding: "20px",
           marginX: "10px",
           borderRadius: "6px",
+          backgroundColor: "#DDE6ED",
         }}
       >
         <Box>

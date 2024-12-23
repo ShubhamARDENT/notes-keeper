@@ -207,10 +207,6 @@ li {
   margin: 0;
 }
 
-body {
-  background: linear-gradient(to right, #60d0d1 0%, #56a9dd 100%);
-}
-
 form {
   display: flex;
   justify-content: center;
