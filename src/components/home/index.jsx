@@ -1,7 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router";
 
-
 const Home = () => {
   return (
     <>
@@ -15,7 +14,7 @@ const Home = () => {
           minHeight: "50vh",
         }}
       >
-        <Typography variant="p" sx={{}}>
+        <Typography variant="p" sx={{ fontSize: "4rem" }}>
           Welcome to Notes keeper
         </Typography>
         <Box sx={{ marginTop: "20px" }}>

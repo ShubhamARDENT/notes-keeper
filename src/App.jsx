@@ -4,6 +4,7 @@ import TodoList from "./components/TodoList";
 import StickyNotes from "./components/StickyNotes";
 import Navbar from "./components/Navbar";
 import { Box } from "@mui/material";
+import "../src/App.css";
 
 function App() {
   return (
