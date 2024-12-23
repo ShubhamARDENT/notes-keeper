@@ -1,5 +1,11 @@
+import Body from "../Body/index";
+
 const TodoList = () => {
-  return <div>TodoList</div>;
+  return (
+    <>
+      <Body />
+    </>
+  );
 };
 
 export default TodoList;
