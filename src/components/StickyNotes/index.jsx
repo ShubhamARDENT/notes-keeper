@@ -1,3 +1,5 @@
+import "./stickynotes.css";
+
 const StickyNotes = () => {
   return <div>StickyNotes</div>;
 };

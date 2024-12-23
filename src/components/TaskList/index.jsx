@@ -28,11 +28,12 @@ const TaskList = ({ tasks, onRemove, onEdit }) => {
           return (
             <ListItem
               sx={{
-                background: "#f2f2f2",
+                background: "#9DB2BF",
                 marginY: "10px",
                 display: "flex",
                 justifyContent: "space-between",
                 fontfamily: "Rubik",
+                borderRadius: "6px",
               }}
               key={task.id}
               onMouseEnter={() => handleMouseEnter(task.id)}
