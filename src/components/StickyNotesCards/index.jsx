@@ -69,7 +69,7 @@ const StickyNotesCards = ({
             resize: "none",
             outline: "none",
             fontFamily: "sans-serif",
-          }}
+          }} 
           onChange={(e) => onChange(id, e.target.value)}
           value={state}
         />
