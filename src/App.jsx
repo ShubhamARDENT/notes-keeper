@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Box>
+      <Box sx={{ marginTop: "100px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todolistapp" element={<TodoList />} />
