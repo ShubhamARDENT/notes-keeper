@@ -1,24 +1,36 @@
-import Home from "../src/components/home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import TodoList from "./components/TodoList";
-import StickyNotes from "./components/StickyNotes";
 import Navbar from "./components/Navbar";
-import { Box } from "@mui/material";
 import "../src/App.css";
+import Error from "./components/Error";
+import { Outlet, RouterProvider } from "react-router";
+import Home from "./components/home";
+import StickyNotes from "./components/StickyNotes";
 
-function App() {
+const Applayout = () => {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
-      <Box sx={{ marginTop: "100px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/todolistapp" element={<TodoList />} />
-          <Route path="/stickynotes" element={<StickyNotes />} />
-        </Routes>
-      </Box>
-    </BrowserRouter>
+      <Outlet />
+    </>
   );
-}
+};
+
+const Approuter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Applayout />,
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/todolistapp", element: <TodoList /> },
+      { path: "/stickynotes", element: <StickyNotes /> },
+    ],
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={Approuter} />;
+};
 
 export default App;

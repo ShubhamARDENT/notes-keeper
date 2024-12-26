@@ -54,7 +54,7 @@ const StickyNotes = () => {
 
   // console.log(state);
   return (
-    <Container>
+    <Container sx={{ marginTop: "100px" }}>
       <Box
         sx={{
           marginBottom: "40px",
@@ -84,7 +84,7 @@ const StickyNotes = () => {
         </Button>
       </Box>
 
-      <Grid2 container wrap="wrap" spacing={4}>
+      <Grid2 container wrap="wrap" spacing={2}>
         {cards.map((card) => (
           <Grid2 item="true" key={card.id}>
             {/* card components */}
