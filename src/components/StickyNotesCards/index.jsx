@@ -47,7 +47,7 @@ const StickyNotesCards = ({
             height: "30px",
             fontSize: "1rem",
             bottom: "30px",
-            left: "200px",
+            left: "245px",
             visibility: "hidden",
             opacity: 0,
             transition: "visibility 0s, opacity 0.3s ease",
@@ -65,11 +65,11 @@ const StickyNotesCards = ({
             border: "none",
             borderRadius: "4px",
             padding: "8px",
-            fontSize: "1.3rem",
+            fontSize: "1.5rem",
             resize: "none",
             outline: "none",
             fontFamily: "sans-serif",
-          }} 
+          }}
           onChange={(e) => onChange(id, e.target.value)}
           value={state}
         />

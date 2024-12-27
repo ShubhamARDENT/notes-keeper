@@ -9,7 +9,7 @@ const Button = ({ icon, fontColor, onClick, isVisible, bgColor }) => {
       sx={{
         visibility: isVisible ? "visible" : "hidden",
         background: bgColor,
-        padding: "16px",
+        padding: "18px",
         marginX: "5px",
         fontSize: "1.2rem",
         ":hover": {

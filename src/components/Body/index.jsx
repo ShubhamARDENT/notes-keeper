@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskList from "../TaskList";
 import Button from "../Button";
-import "./style.css";
+
 import { faPlus, faSave } from "@fortawesome/free-solid-svg-icons";
 import {
   Box,
@@ -9,6 +9,7 @@ import {
   Typography,
   OutlinedInput,
   Button as ClearAllBtn,
+  FormControl,
 } from "@mui/material";
 
 const Body = () => {
@@ -62,29 +63,49 @@ const Body = () => {
       handleAddTask();
     }
   };
+
+  const handleCompleteTask = (id) => {
+    const updatedTasks = PrevTask.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    setTask(updatedTasks);
+  };
+
+  useEffect(() => {
+    if (PrevTask.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(PrevTask));
+    }
+  }, [PrevTask]);
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    const parsedTasks = storedTasks ? JSON.parse(storedTasks) : [];
+    if (Array.isArray(parsedTasks)) {
+      setTask(parsedTasks);
+    }
+  }, []);
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Container
-        maxWidth="md"
+    <Container maxWidth="md" sx={{ marginTop: "150px" }}>
+      <Box
         sx={{
           background: "white",
           padding: "20px",
           marginX: "10px",
           borderRadius: "6px",
-          backgroundColor: "#DDE6ED",
+          backgroundColor: "white",
+          Width: "100%",
         }}
       >
         <Box>
           <Typography
             variant="h1"
-            sx={{ fontSize: "2rem", fontWeight: "600", fontfamily: "Rubik" }}
+            sx={{
+              fontSize: "2rem",
+              fontWeight: "600",
+              fontfamily: "Rubik",
+              textAlign: "center",
+            }}
           >
             Todo App
           </Typography>
@@ -94,28 +115,40 @@ const Body = () => {
               handleSaveOrUpdate();
             }}
           >
-            <OutlinedInput
+            <FormControl
               sx={{
-                marginY: "20px",
-                borderRadius: "5px",
-                fontSize: "1.2rem",
-                width: "90%",
-                "& .MuiInputBase-input": {
-                  paddingY: "12px",
-                },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
               }}
-              placeholder="Add your new todo"
-              value={value}
-              onChange={handleOnchange}
-            />
-            {/* add btn */}
-            <Button
-              onClick={handleSaveOrUpdate}
-              icon={editTaskId ? faSave : faPlus}
-              isVisible={true}
-              bgColor={"#8f48eb"}
-              fontColor={"white"}
-            />
+            >
+              <OutlinedInput
+                sx={{
+                  marginY: "20px",
+                  borderRadius: "5px",
+                  fontSize: "1.3rem",
+                  width: "90%",
+                  "& .MuiInputBase-input": {
+                    paddingY: "12px",
+                  },
+                  background: "white",
+                  border: "1px solid #2d8eff",
+                  outline: "none",
+                }}
+                placeholder="Add your new todo"
+                value={value}
+                onChange={handleOnchange}
+              />
+              {/* add btn */}
+              <Button
+                onClick={handleSaveOrUpdate}
+                icon={editTaskId ? faSave : faPlus}
+                isVisible={true}
+                bgColor={"#2d8eff"}
+                fontColor={"white"}
+              />
+            </FormControl>
           </form>
         </Box>
         {/* component */}
@@ -123,6 +156,7 @@ const Body = () => {
           tasks={PrevTask}
           onRemove={handleRemoveTask}
           onEdit={handleEditTask}
+          onComplete={handleCompleteTask}
         />
 
         <Box
@@ -137,7 +171,9 @@ const Body = () => {
           <Typography
             component="p"
             sx={{
-              fontSize: "1.2rem",
+              fontSize: "1.4rem",
+              color: "white",
+              fontWeight: "600",
             }}
           >
             You have {PrevTask.length} pending Tasks
@@ -147,14 +183,16 @@ const Body = () => {
             {PrevTask.length >= 1 && (
               <ClearAllBtn
                 sx={{
-                  background: "#8f48eb",
-                  border: "2px solid #8f48eb",
-                  color: "white",
+                  background: "white",
+                  border: "2px solid #2d8eff",
+                  color: "#2d8eff",
+                  paddingX: "25px",
+                  paddingY: "10px",
 
                   ":hover": {
-                    background: "white",
-                    border: "2px solid #8f48eb",
-                    color: " #8f48eb",
+                    background: "#2d8eff",
+                    border: "2px solid white",
+                    color: "white",
                   },
                 }}
                 onClick={handleClearAll}
@@ -164,8 +202,8 @@ const Body = () => {
             )}
           </Box>
         </Box>
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

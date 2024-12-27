@@ -3,12 +3,11 @@ import { Box, Container, Typography, Button } from "@mui/material";
 import { Link } from "react-router";
 const Error = () => {
   const error = useRouteError();
-  console.log(error);
+
   return (
     <Container
       maxWidth={false}
       sx={{
-        background: "#0f1e25",
         height: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -21,24 +20,23 @@ const Error = () => {
           flexDirection: "column",
           color: "black",
           background: "white",
-          padding: "20px",
+          padding: "30px",
           textAlign: "center",
-
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2);",
           borderRadius: "6px",
         }}
       >
         <Typography variant="p" sx={{ fontSize: "3rem", fontWeight: 900 }}>
           {error.status}
         </Typography>
-
-        <Typography variant="p" sx={{ fontSize: "1.2rem", marginY: "20px" }}>
+        <Typography variant="p" sx={{ fontSize: "1.5rem", marginY: "20px" }}>
           {error.error.message}
         </Typography>
         <Box sx={{ marginTop: "20px" }}>
           <Link path="/">
             <Button
               sx={{
-                background: "#75ba75",
+                background: "#2d8eff",
                 padding: "10px",
                 color: "white",
                 fontWeight: 600,

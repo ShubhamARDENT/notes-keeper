@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPenToSquare,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 import Button from "../Button";
 import { Box, List, ListItem, Typography } from "@mui/material";
 
-const TaskList = ({ tasks, onRemove, onEdit }) => {
+const TaskList = ({ tasks, onRemove, onEdit, onComplete }) => {
   const [visibleId, setvisibleId] = useState(null);
 
   const handleMouseEnter = (id) => {
@@ -28,12 +32,14 @@ const TaskList = ({ tasks, onRemove, onEdit }) => {
           return (
             <ListItem
               sx={{
-                background: "#9DB2BF",
+                background: "white",
                 marginY: "10px",
                 display: "flex",
                 justifyContent: "space-between",
                 fontfamily: "Rubik",
-                borderRadius: "6px",
+                textDecoration: task.completed ? "line-through" : "none",
+                backgroundColor: task.completed ? "#f0f8ff" : "white",
+                borderBottom: "1px solid #2d8eff",
               }}
               key={task.id}
               onMouseEnter={() => handleMouseEnter(task.id)}
@@ -48,9 +54,19 @@ const TaskList = ({ tasks, onRemove, onEdit }) => {
                   onClick={() => onEdit(task.id, task.Text)}
                   isVisible={visibleId === task.id}
                   icon={faPenToSquare}
-                  bgColor={"#8f48eb"}
+                  bgColor={"#2d8eff"}
                   fontColor={"white"}
                 />
+                <Button
+                  sx={{ marginRight: "10px" }}
+                  bgColor={"#2d8eff"}
+                  isVisible={visibleId === task.id}
+                  onClick={() => onComplete(task.id)}
+                  fontColor={"white"}
+                  icon={faCheck}
+                >
+                  {task.completed ? "Undo" : "Complete"}
+                </Button>
                 {/* button component */}
                 <Button
                   bgColor={"red"}
@@ -77,5 +93,6 @@ TaskList.propTypes = {
   ).isRequired,
   onRemove: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+  onComplete: PropTypes.func,
 };
 export default TaskList;

@@ -7,43 +7,61 @@ const Navbar = () => {
       <AppBar
         sx={{
           display: "flex",
-          padding: "25px",
+          paddingBlock: "26px",
           flexDirection: "row",
-          gap: "25px",
+          justifyContent: "space-evenly",
           alignItems: "center",
+          background: "white",
+          boxShadow: "none",
+          color: "black",
         }}
         position="fixed"
       >
         <Link to="/">
-          <Typography variant="h6" sx={{ color: "white" }}>
+          <Typography
+            variant="span"
+            sx={{
+              color: "black",
+              fontWeight: 900,
+              fontSize: "1.5rem",
+              fontStyle: "italic",
+            }}
+          >
             Notes Keeper
+            <Typography variant="span" sx={{ color: "#2d8eff" }}>
+              .
+            </Typography>
           </Typography>
         </Link>
+        {/* links */}
+        <Box
+          sx={{
+            display: "flex",
+            columnGap: "50px",
+            width: "46%",
+            fontSize: "1.5rem",
+            fontWeight: 600,
+          }}
+        >
+          <Link to="/todolistapp">
+            <Typography variant="p" sx={{ color: "black" }}>
+              To-do List
+            </Typography>
+          </Link>
+          <Link to="/stickynotes">
+            <Typography variant="p" sx={{ color: "black" }}>
+              Sticky Notes
+            </Typography>
+          </Link>
 
-        <Link to="/todolistapp">
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: "1.2rem",
-              fontFamily: "sans-serif",
-              color: "white",
-            }}
-          >
-            To-do List
+          <Typography variant="p" sx={{ color: "black" }}>
+            Contact Us
           </Typography>
-        </Link>
-        <Link to="/stickynotes">
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: "1.2rem",
-              fontFamily: "sans-serif",
-              color: "white",
-            }}
-          >
-            Sticky Notes
+
+          <Typography variant="p" sx={{ color: "black" }}>
+            Pricing
           </Typography>
-        </Link>
+        </Box>
       </AppBar>
     </Box>
   );
